@@ -1,12 +1,11 @@
-import CurrentUser from "./current-user"
-
+import CurrentUser from './current-user';
 
 const Header = () => {
   return (
     <div>
-        <CurrentUser/>
+      <CurrentUser />
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
