@@ -7,6 +7,7 @@ import { useGetIdentity } from '@refinedev/core';
 import type { User } from '@/graphql/schema.types';
 import { Text } from '../text';
 import { SettingOutlined } from '@ant-design/icons';
+import AccountSettings from './account-settings';
 
 const CurrentUser = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -67,6 +68,13 @@ const CurrentUser = () => {
         />
         {/* <Button></Button> */}
       </Popover>
+      {user && (
+        <AccountSettings
+          opened={isOpen}
+          setOpened={setIsOpen}
+          userId={user.id}
+        />
+      )}
     </>
   );
 };
