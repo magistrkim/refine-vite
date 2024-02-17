@@ -1,8 +1,5 @@
-
 const DealsChart = () => {
-  return (
-    <div>DealsChart</div>
-  )
-}
+  return <div>DealsChart</div>;
+};
 
-export default DealsChart
+export default DealsChart;

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { CalendarOutlined } from '@ant-design/icons';
 import { Badge, Card, List } from 'antd';
 import { Text } from '../text';
@@ -9,8 +8,7 @@ import { getDate } from '@/utilities/helpers';
 import dayjs from 'dayjs';
 
 const UpcomingEvents = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const { data, isLoading: eventsLoading } = useList({
+  const { data, isLoading } = useList({
     resource: 'events',
     pagination: { pageSize: 5 },
     sorters: [
@@ -78,7 +76,19 @@ const UpcomingEvents = () => {
               </List.Item>
             );
           }}
-        ></List>
+        />
+      )}
+      {!isLoading && data?.data.length === 0 && (
+        <span
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            height: '220px',
+          }}
+        >
+          No upcoming events
+        </span>
       )}
     </Card>
   );
