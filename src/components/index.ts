@@ -6,6 +6,7 @@ import AccordionHeaderSkeleton from './skeleton/accordion-header';
 import KanbanColumnSkeleton from './skeleton/kanban';
 import LatestActivitiesSkeleton from './skeleton/latest-activities';
 import ProjectCardSkeleton from './skeleton/project-card';
+import DashboardLatestActivities from './home/DashboardLatestActivities';
 
 export {
   UpcomingEvents,
@@ -16,4 +17,5 @@ export {
   KanbanColumnSkeleton,
   LatestActivitiesSkeleton,
   ProjectCardSkeleton,
+  DashboardLatestActivities,
 };
