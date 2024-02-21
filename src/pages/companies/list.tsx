@@ -19,6 +19,15 @@ export const CompaniesList = () => {
   const go = useGo();
   const { tableProps, filters } = useTable({
     resource: 'companies',
+    onSearch: values => {
+      return [
+        {
+          field: 'name',
+          operator: 'contains',
+          value: values.name,
+        },
+      ];
+    },
     pagination: {
       pageSize: 12,
     },
