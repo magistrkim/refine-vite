@@ -1,5 +1,11 @@
 import { COMPANIES_LIST_QUERY } from '@/graphql/queries';
-import { CreateButton, FilterDropdown, List } from '@refinedev/antd';
+import {
+  CreateButton,
+  DeleteButton,
+  EditButton,
+  FilterDropdown,
+  List,
+} from '@refinedev/antd';
 import { getDefaultFilter, useGo } from '@refinedev/core';
 import { useTable } from '@refinedev/antd';
 import { Table, Input, Space } from 'antd';
@@ -15,6 +21,23 @@ export const CompaniesList = () => {
     resource: 'companies',
     pagination: {
       pageSize: 12,
+    },
+    sorters: {
+      initial: [
+        {
+          field: 'createdAt',
+          order: 'desc',
+        },
+      ],
+    },
+    filters: {
+      initial: [
+        {
+          field: 'name',
+          operator: 'contains',
+          value: undefined,
+        },
+      ],
     },
     meta: {
       gqlQuery: COMPANIES_LIST_QUERY,
@@ -69,6 +92,17 @@ export const CompaniesList = () => {
             <Text style={{ whiteSpace: 'nowrap' }}>
               {currencyNumber(company?.dealsAggregate?.[0].sum?.value || 0)}
             </Text>
+          )}
+        />
+        <Table.Column<Company>
+          dataIndex="id"
+          title="Actions"
+          fixed="right"
+          render={value => (
+            <Space>
+              <EditButton hideText recordItemId={value} size="small" />
+              <DeleteButton hideText recordItemId={value} size="small" />
+            </Space>
           )}
         />
       </Table>
