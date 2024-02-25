@@ -2,11 +2,16 @@ import CustomAvatar from '@/components/custom-avatar';
 import { UPDATE_COMPANY_MUTATION } from '@/graphql/mutations';
 import { getNameInitials } from '@/utilities';
 import { Edit, useForm, useSelect } from '@refinedev/antd';
-import { Col, Form, Row, Select } from 'antd';
+import { Col, Form, Input, InputNumber, Row, Select } from 'antd';
 import SelectOptionWithAvatar from '@/components/SelectOptionWithAvatar';
 import { UsersSelectQuery } from '@/graphql/types';
 import { GetFieldsFromList } from '@refinedev/nestjs-query';
 import { USERS_SELECT_QUERY } from '@/graphql/queries';
+import {
+  businessTypeOptions,
+  companySizeOptions,
+  industryOptions,
+} from '@/constants';
 
 export const EditPage = () => {
   const { saveButtonProps, formProps, formLoading, queryResult } = useForm({
@@ -67,23 +72,28 @@ export const EditPage = () => {
                   }
                 />
               </Form.Item>
-              <Form.Item>
-                <Select />
+              <Form.Item label="Company size" name="companySize">
+                <Select options={companySizeOptions} />
               </Form.Item>
-              <Form.Item>
-                <Select />
+              <Form.Item label="Total revenue" name="totalRevenue">
+                <InputNumber
+                  autoFocus
+                  placeholder="0,00"
+                  min={0}
+                  addonBefore="$"
+                />
               </Form.Item>
-              <Form.Item>
-                <Select />
+              <Form.Item label="Industry" name="industry">
+                <Select options={industryOptions} />
               </Form.Item>
-              <Form.Item>
-                <Select />
+              <Form.Item label="Business type" name="businessType">
+                <Select options={businessTypeOptions} />
               </Form.Item>
-              <Form.Item>
-                <Select />
+              <Form.Item label="Country" name="country">
+                <Input placeholder="Country" />
               </Form.Item>
-              <Form.Item>
-                <Select />
+              <Form.Item label="Website" name="website">
+                <Input placeholder="Website" />
               </Form.Item>
             </Form>
           </Edit>
