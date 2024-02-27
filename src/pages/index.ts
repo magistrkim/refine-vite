@@ -6,3 +6,4 @@ export * from "./companies/list"
 export * from "./companies/create"
 export * from "./companies/edit"
 export * from "./companies/contacts"
+export * from './tasks/list';

@@ -25,6 +25,7 @@ import {
   CompaniesList,
   Create,
   EditPage,
+  TasksList
 } from './pages';
 import Layout from './components/layout';
 import { resources } from './config/resources';
@@ -73,6 +74,11 @@ function App() {
                     <Route index element={<CompaniesList />} />
                     <Route path="new" element={<Create />} />
                     <Route path="edit/:id" element={<EditPage />} />
+                  </Route>
+                  <Route path="/tasks">
+                    <Route index element={<TasksList />} />
+                    {/* <Route path="new" element={<Create />} />
+                    <Route path="edit/:id" element={<EditPage />} /> */}
                   </Route>
                 </Route>
               </Routes>
