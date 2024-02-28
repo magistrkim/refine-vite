@@ -1,11 +1,13 @@
+import { DndContext } from '@dnd-kit/core';
+import React from 'react';
 
-export const KanbanBoardContainer = () => {
+export const KanbanBoardContainer = ({ children }: React.PropsWithChildren) => {
   return (
-    <div>Container</div>
-  )
-}
-export const KanbanBoard = () => {
-       return (
-    <div>Board</div>
-  )
- }
+    <div style={{}}>
+      <div style={{}}>{children}</div>
+    </div>
+  );
+};
+export const KanbanBoard = ({ children }: React.PropsWithChildren) => {
+  return <DndContext>{children}</DndContext>;
+};
