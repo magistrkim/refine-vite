@@ -8,9 +8,11 @@ import KanbanItem from '@/components/tasks/kanban/item';
 import { TASKS_QUERY, TASK_STAGES_QUERY } from '@/graphql/queries';
 import { useList } from '@refinedev/core';
 import { TaskStage } from '@/graphql/schema.types';
+import { GetFieldsFromList } from '@refinedev/nestjs-query';
+import { TasksQuery } from '@/graphql/types';
 
 export const TasksList = () => {
-  const { data: stages, isLoading: isLoadingStages } = useList({
+  const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
     resource: 'taskStages',
     sorters: [
       {
@@ -30,7 +32,7 @@ export const TasksList = () => {
     },
   });
 
-  const { data: tasks, isLoading: isLoadingTasks } = useList({
+  const { data: tasks, isLoading: isLoadingTasks } = useList<GetFieldsFromList<TasksQuery>>({
     resource: 'tasks',
     sorters: [
       {
@@ -79,10 +81,15 @@ export const TasksList = () => {
             count={taskStages.unassignedStage.length || 0}
             onAddClick={() => handleAddCard({ stageId: 'unassigned' })}
           >
-            <KanbanItem>First ToDo</KanbanItem>
-          </KanbanColumn>
-          <KanbanColumn>
-            <KanbanItem>Second ToDo</KanbanItem>
+            {taskStages.unassignedStage.map(task => (
+              <KanbanItem
+                key={task.id}
+                id={task.id}
+                data={{ ...task, stageId: 'unassined' }}
+              >
+                {task.title}
+              </KanbanItem>
+            ))}
           </KanbanColumn>
         </KanbanBoard>
       </KanbanBoardContainer>

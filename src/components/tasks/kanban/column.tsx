@@ -24,7 +24,9 @@ const KanbanColumn = ({
     data,
   });
 
-  const onAddClickHandler = () => {};
+  const onAddClickHandler = () => {
+    onAddClick?.({ id });
+  };
   return (
     <div
       style={{
