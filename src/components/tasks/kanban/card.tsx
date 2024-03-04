@@ -1,4 +1,5 @@
 import { Text } from '@/components/text';
+import { TextIcon } from '@/components/text-icon';
 import { User } from '@/graphql/schema.types';
 import { DeleteOutlined, EyeOutlined, MoreOutlined } from '@ant-design/icons';
 import { Button, Card, ConfigProvider, Dropdown, MenuProps, theme } from 'antd';
@@ -66,16 +67,33 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
             menu={{
               items: dropdownItems,
             }}
+            placement="bottom"
+            arrow={{ pointAtCenter: true }}
           >
             <Button
               type="text"
               shape="circle"
               icon={<MoreOutlined style={{ transform: 'rotate(90deg)' }} />}
+              onPointerDown={event => {
+                event.stopPropagation();
+              }}
+              onClick={event => {
+                event.stopPropagation();
+              }}
             />
           </Dropdown>
         }
       >
-        Card
+        <div
+          style={{
+            display: 'flex',
+            flexWrap: 'wrap',
+            alignItems: 'center',
+            gap: '8px',
+          }}
+        >
+          <TextIcon />
+        </div>
       </Card>
     </ConfigProvider>
   );
