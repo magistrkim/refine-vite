@@ -1,4 +1,7 @@
+import { Text } from '@/components/text';
 import { User } from '@/graphql/schema.types';
+import { Card, ConfigProvider, theme } from 'antd';
+import React from 'react';
 
 type ProjectCardProps = {
   id: string;
@@ -13,7 +16,28 @@ type ProjectCardProps = {
 };
 
 const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
-  return <div>ProjectCard</div>;
+  const { token } = theme.useToken();
+  return (
+    <ConfigProvider
+      theme={{
+        components: {
+          Tag: {
+            colorText: token.colorTextSecondary,
+          },
+          Card: {
+            headerBg: 'transparent',
+          },
+        },
+      }}
+    >
+      <Card
+        size="small"
+        title={<Text ellipsis={{ tooltip: title }}>{title}</Text>}
+      >
+        Card
+      </Card>
+    </ConfigProvider>
+  );
 };
 
 export default ProjectCard;

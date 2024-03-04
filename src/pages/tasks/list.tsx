@@ -90,7 +90,9 @@ export const TasksList = () => {
                 id={task.id}
                 data={{ ...task, stageId: 'unassined' }}
               >
-                <ProjectCard {...task} dueDate={task.dueDate || undefined} />
+                    <ProjectCard
+                        {...task} dueDate={task.dueDate || undefined}
+                    />
               </KanbanItem>
             ))}
           </KanbanColumn>
