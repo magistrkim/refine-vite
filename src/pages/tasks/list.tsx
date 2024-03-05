@@ -12,6 +12,7 @@ import { TaskStage } from '@/graphql/schema.types';
 import { GetFieldsFromList } from '@refinedev/nestjs-query';
 import { TasksQuery } from '@/graphql/types';
 import { ProjectCardMemo } from '@/components/tasks/kanban/card';
+import { KanbanColumnSkeleton, ProjectCardSkeleton } from '@/components';
 
 export const TasksList = () => {
   const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
@@ -75,6 +76,8 @@ export const TasksList = () => {
     };
   }, [stages, tasks]);
   const handleAddCard = (args: { stageId: string }) => {};
+  const isLoading = isLoadingStages || isLoadingTasks;
+  if (isLoading) return <PageSkeleton />;
   return (
     <div>
       <KanbanBoardContainer>
@@ -104,8 +107,44 @@ export const TasksList = () => {
               />
             )}
           </KanbanColumn>
+          {taskStages.columns?.map(column => (
+            <KanbanColumn
+              key={column.id}
+              id={column.id}
+              title={column.title}
+              count={column.tasks.length}
+              onAddClick={() => handleAddCard({ stageId: column.id })}
+            >
+              {!isLoading &&
+                column.tasks.map(task => (
+                  <KanbanItem key={task.id} id={task.id} data={task}>
+                    <ProjectCardMemo
+                      {...task}
+                      dueDate={task.dueDate || undefined}
+                    />
+                  </KanbanItem>
+                ))}
+            </KanbanColumn>
+          ))}
         </KanbanBoard>
       </KanbanBoardContainer>
     </div>
+  );
+};
+
+const PageSkeleton = () => {
+  const columnCount = 6;
+  const itemCount = 4;
+
+  return (
+    <KanbanBoardContainer>
+      {Array.from({ length: columnCount }).map((_, index) => (
+        <KanbanColumnSkeleton key={index}>
+          {Array.from({ length: itemCount }).map((_, index) => (
+            <ProjectCardSkeleton key={index} />
+          ))}
+        </KanbanColumnSkeleton>
+      ))}
+    </KanbanBoardContainer>
   );
 };
