@@ -5,12 +5,13 @@ import {
 } from '@/components/tasks/kanban/board';
 import KanbanColumn from '@/components/tasks/kanban/column';
 import KanbanItem from '@/components/tasks/kanban/item';
+import { KanbanAddCardButton } from '@/components/tasks/kanban/addCardButton';
 import { TASKS_QUERY, TASK_STAGES_QUERY } from '@/graphql/queries';
 import { useList } from '@refinedev/core';
 import { TaskStage } from '@/graphql/schema.types';
 import { GetFieldsFromList } from '@refinedev/nestjs-query';
 import { TasksQuery } from '@/graphql/types';
-import ProjectCard from '@/components/tasks/kanban/card';
+import { ProjectCardMemo } from '@/components/tasks/kanban/card';
 
 export const TasksList = () => {
   const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
@@ -90,11 +91,18 @@ export const TasksList = () => {
                 id={task.id}
                 data={{ ...task, stageId: 'unassined' }}
               >
-                    <ProjectCard
-                        {...task} dueDate={task.dueDate || undefined}
-                    />
+                <ProjectCardMemo
+                  {...task}
+                  dueDate={task.dueDate || undefined}
+                />
               </KanbanItem>
             ))}
+
+            {!taskStages.unassignedStage.length && (
+              <KanbanAddCardButton
+                onClick={() => handleAddCard({ stageId: 'unassigned' })}
+              />
+            )}
           </KanbanColumn>
         </KanbanBoard>
       </KanbanBoardContainer>
