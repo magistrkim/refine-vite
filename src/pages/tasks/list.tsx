@@ -14,7 +14,7 @@ import { TasksQuery } from '@/graphql/types';
 import { ProjectCardMemo } from '@/components/tasks/kanban/card';
 import { KanbanColumnSkeleton, ProjectCardSkeleton } from '@/components';
 
-export const TasksList = () => {
+export const TasksList = ({ children }: React.PropsWithChildren) => {
   const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
     resource: 'taskStages',
     sorters: [
@@ -124,10 +124,16 @@ export const TasksList = () => {
                     />
                   </KanbanItem>
                 ))}
+              {!column.tasks.length && (
+                <KanbanAddCardButton
+                  onClick={() => handleAddCard({ stageId: column.id })}
+                />
+              )}
             </KanbanColumn>
           ))}
         </KanbanBoard>
       </KanbanBoardContainer>
+      {children}
     </div>
   );
 };
