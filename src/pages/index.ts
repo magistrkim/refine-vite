@@ -7,3 +7,5 @@ export * from "./companies/create"
 export * from "./companies/edit"
 export * from "./companies/contacts"
 export * from './tasks/list';
+export * from './tasks/create';
+export * from './tasks/edit';
