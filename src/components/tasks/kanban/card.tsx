@@ -22,7 +22,7 @@ import {
   theme,
 } from 'antd';
 import dayjs from 'dayjs';
-import React, { useMemo, memo } from 'react';
+import { useMemo, memo } from 'react';
 
 type ProjectCardProps = {
   id: string;
@@ -100,6 +100,12 @@ const ProjectCard = ({ id, title, dueDate, users }: ProjectCardProps) => {
             trigger={['click']}
             menu={{
               items: dropdownItems,
+              onPointerDown: event => {
+                event.stopPropagation();
+              },
+              onClick: event => {
+                event.domEvent.stopPropagation();
+              },
             }}
             placement="bottom"
             arrow={{ pointAtCenter: true }}

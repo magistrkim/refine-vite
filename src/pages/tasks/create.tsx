@@ -23,7 +23,6 @@ export const TasksCreatePage = () => {
       onCancel={() => {
         close();
 
-        // navigate to the list page of the tasks resource
         list('tasks', 'replace');
       }}
       title="Add new card"
@@ -33,7 +32,7 @@ export const TasksCreatePage = () => {
         {...formProps}
         layout="vertical"
         onFinish={values => {
-          // on finish, call the onFinish method of useModalForm to perform the mutation
+
           formProps?.onFinish?.({
             ...values,
             stageId: searchParams.get('stageId')
