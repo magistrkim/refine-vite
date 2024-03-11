@@ -8,16 +8,18 @@ import KanbanItem from '@/components/tasks/kanban/item';
 import { KanbanAddCardButton } from '@/components/tasks/kanban/addCardButton';
 import { TASKS_QUERY, TASK_STAGES_QUERY } from '@/graphql/queries';
 import { useList, useNavigation, useUpdate } from '@refinedev/core';
-import { TaskStage } from '@/graphql/schema.types';
 import { GetFieldsFromList } from '@refinedev/nestjs-query';
-import { TasksQuery } from '@/graphql/types';
+import { TaskStagesQuery, TasksQuery } from '@/graphql/types';
 import { ProjectCardMemo } from '@/components/tasks/kanban/card';
 import { KanbanColumnSkeleton, ProjectCardSkeleton } from '@/components';
 import { DragEndEvent } from '@dnd-kit/core';
 import { UPDATE_TASK_STAGE_MUTATION } from '@/graphql/mutations';
 
+type Task = GetFieldsFromList<TasksQuery>;
+type TaskStage = GetFieldsFromList<TaskStagesQuery> & { tasks: Task[] };
+
 export const TasksList = ({ children }: React.PropsWithChildren) => {
-    const { replace } = useNavigation();
+  const { replace } = useNavigation();
   const { data: stages, isLoading: isLoadingStages } = useList<TaskStage>({
     resource: 'taskStages',
     sorters: [
@@ -85,8 +87,8 @@ export const TasksList = ({ children }: React.PropsWithChildren) => {
     const path =
       args.stageId === 'unassigned'
         ? '/tasks/new'
-              : `/tasks/new?stageId=${args.stageId}`;
-      replace(path)
+        : `/tasks/new?stageId=${args.stageId}`;
+    replace(path);
   };
 
   const handleOnDragEnd = (event: DragEndEvent) => {
