@@ -17,31 +17,31 @@
 </div>
 
 ## <a name="introduction">📋 Introduction</a>
-Developed using Next.js and Bright Data's webunlocker, this e-commerce product scraping site is designed 
-to assist users in making informed decisions. It notifies users when a product drops in price and helps 
-competitors by alerting them when the product is out of stock, all managed through cron jobs.
+React-based CRM dashboard featuring comprehensive authentication, antd charts, sales management, and a fully operational kanban board with live updates for real-time actions across all devices.
 
+<br />
+  
 <div align="center">
     <a href="https://www.linkedin.com/in/nataliya-kachor-522170271/" target="_blank">
-      <img src="https://github.com/magistrkim/pricewise/assets/115700340/17860ba9-8173-482d-bcb5-d1fa29e77d61" alt="Project Banner"> 
+      <img src="https://github.com/magistrkim/refine-vite/assets/115700340/3c1fd290-2e05-4b82-bf65-3c3224dbeb8a" alt="Project Image"> 
     </a>
 </div>
 
 ## <a name="tech-stack">⚙️ Tech Stack</a>
-- Next.js
-- Bright Data
-- Cheerio
-- Nodemailer
-- MongoDB
-- Headless UI
-- Tailwind CSS
+- TypeScript
+- Refine
+- Ant-Design
+- Kanban
+- GraphQL
+- Vite
+- Nest.js
 
-   <br />
+<br />
    
 <div align="center">
    <br />
     <a href="https://www.linkedin.com/in/nataliya-kachor-522170271/" target="_blank">
-      <img src="https://github.com/magistrkim/pricewise/assets/115700340/c9fe4e9a-6d59-484a-97b7-ddbc02b8a8d2" alt="Project Banner"> 
+      <img src="https://github.com/magistrkim/refine-vite/assets/115700340/ee07a2b8-8dfe-42aa-8815-4d5305d6c664" alt="Project Image"> 
     </a>
    <br />
 </div>
