@@ -23,6 +23,7 @@ React-based CRM dashboard featuring comprehensive authentication, antd charts, s
 - Refine
 - Ant-Design
 - Kanban
+- React
 - GraphQL
 - Vite
 - Nest.js
