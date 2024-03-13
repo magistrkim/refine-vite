@@ -1,4 +1,4 @@
-# Dashboard
+# CRM Dashboard
 <div align="center">
   <br />
     <a href="https://www.linkedin.com/in/nataliya-kachor-522170271/" target="_blank">
